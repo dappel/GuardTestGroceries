@@ -35,7 +35,6 @@ guard 'spork', :cucumber => false, :test_unit => false do
 end
 
 guard 'bundler' do
-
   watch('Gemfile')
   # Uncomment next line if Gemfile contain `gemspec' command
   # watch(/^.+.gemspec/)
@@ -57,3 +56,12 @@ guard 'rspec' do
   watch('app/controllers/application_controller.rb')  { "spec/controllers" }
 
 end
+
+
+# Make sure this guard is ABOVE any other guards using assets such as jasmine-headless-webkit
+# It is recommended to make explicit list of assets in `config/application.rb`
+# config.assets.precompile = ['application.js', 'application.css', 'all-ie.css']
+#guard 'rails-assets', :run_on => [:start, :change], :runner => :rails do
+#  watch(%r{^app/assets/.+$})
+#  watch('config/application.rb')
+#end
